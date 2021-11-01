@@ -33,7 +33,15 @@ export class ProductService {
     return product;
   }
 
-  async getProductList(): Promise<ProductEntity[]> {
+  async getProductList(category?: string): Promise<ProductEntity[]> {
+    if (category) {
+      return this.product.find({
+        where: {
+          category: { id: category },
+        },
+        relations: ['additionalImages', 'category'],
+      });
+    }
     return this.product.find({
       relations: ['additionalImages', 'category'],
     });

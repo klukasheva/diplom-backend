@@ -5,11 +5,11 @@ import {
   Get,
   Param,
   Post,
-  Put,
+  Put, Query,
   UploadedFile,
   UploadedFiles,
-  UseInterceptors,
-} from '@nestjs/common';
+  UseInterceptors
+} from "@nestjs/common";
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { ProductEntity } from 'src/entities/product.entity';
 import { ProductService } from './product.service';
@@ -30,8 +30,8 @@ export class ProductController {
   }
 
   @Get('')
-  getList(): Promise<ProductEntity[]> {
-    return this.productService.getProductList();
+  getList(@Query('category') category): Promise<ProductEntity[]> {
+    return this.productService.getProductList(category);
   }
 
   @Delete('')
@@ -59,30 +59,5 @@ export class ProductController {
   @Post('')
   create(@Body() data: Omit<ProductEntity, 'image'>): Promise<ProductEntity> {
     return this.productService.create(data);
-  }
-
-  @Post('multiple')
-  @UseInterceptors(
-    FilesInterceptor('image', 20, {
-      storage: diskStorage({
-        destination: './uploads',
-        filename: editFileName,
-      }),
-      fileFilter: imageFileFilter,
-    }),
-  )
-  async uploadMultipleFiles(
-    @UploadedFiles() files,
-    @Body() key: { id: string },
-  ) {
-    const response = [];
-    files.forEach((file) => {
-      response.push({ link: file.filename });
-    });
-
-    return this.productService.update({
-      id: +key.id,
-      additionalImages: response,
-    });
   }
 }
