@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -20,7 +21,7 @@ export class NewsController {
   constructor(private readonly newsService: NewsService) {}
 
   @Get('')
-  async getList(): Promise<NewsEntity[]> {
+  async getList() {
     return this.newsService.getList();
   }
   @Post('')
@@ -33,8 +34,8 @@ export class NewsController {
   }
 
   @Get(':id')
-  async get(@Param() id: string): Promise<NewsEntity> {
-    return this.newsService.get(+id);
+  async get(@Param() id: number): Promise<NewsEntity> {
+    return this.newsService.get(id);
   }
 
   @Put('')

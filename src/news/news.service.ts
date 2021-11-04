@@ -14,18 +14,11 @@ export class NewsService {
   }
 
   async getList(): Promise<NewsEntity[]> {
-    return this.newsEntity.find({
-      relations: ['tags'],
-    });
+    return await this.newsEntity.find();
   }
 
   async get(id: number): Promise<NewsEntity> {
-    return this.newsEntity.findOne(
-      { id: id },
-      {
-        relations: ['tags'],
-      },
-    );
+    return await this.newsEntity.findOne(id);
   }
 
   async delete(ids: number[]): Promise<NewsEntity[]> {

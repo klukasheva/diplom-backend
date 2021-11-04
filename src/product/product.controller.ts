@@ -5,11 +5,12 @@ import {
   Get,
   Param,
   Post,
-  Put, Query,
+  Put,
+  Query,
   UploadedFile,
   UploadedFiles,
-  UseInterceptors
-} from "@nestjs/common";
+  UseInterceptors,
+} from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { ProductEntity } from 'src/entities/product.entity';
 import { ProductService } from './product.service';

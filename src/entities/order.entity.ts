@@ -1,0 +1,27 @@
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { ProductEntity } from './product.entity';
+
+@Entity()
+export class OrderEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
+  @Column()
+  phoneNumber: string;
+  @Column()
+  customerName: string;
+  @Column()
+  address: string;
+  @Column()
+  cost: number;
+  @Column()
+  description: string;
+  @ManyToMany(() => ProductEntity, (product) => product.orders)
+  @JoinTable()
+  products: ProductEntity[];
+}

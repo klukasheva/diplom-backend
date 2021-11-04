@@ -2,12 +2,14 @@ import {
   Column,
   Entity,
   JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { ImagesEntity } from './images.entity';
 import { CategoryEntity } from './category.entity';
+import { OrderEntity } from './order.entity';
 
 @Entity()
 export class ProductEntity {
@@ -15,13 +17,15 @@ export class ProductEntity {
   id: number;
   @Column({ default: '' })
   image: string;
-  @Column({ default: '' })
+  @Column()
   title: string;
-  @Column({ default: 0 })
+  @Column()
   cost: number;
-  @Column({ default: 0 })
+  @Column({ default: 1 })
+  count: number;
+  @Column()
   stockCost: number;
-  @Column({ default: '' })
+  @Column({ length: 10000 })
   description: string;
   @OneToMany(() => ImagesEntity, (image) => image.product)
   @JoinTable({
@@ -32,4 +36,6 @@ export class ProductEntity {
   additionalImages: ImagesEntity[];
   @ManyToOne(() => CategoryEntity, (category) => category.products)
   category: CategoryEntity;
+  @ManyToMany(() => OrderEntity, (order) => order.products)
+  orders: OrderEntity[];
 }

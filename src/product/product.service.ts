@@ -27,10 +27,9 @@ export class ProductService {
   }
 
   async get(id: number): Promise<ProductEntity> {
-    const product = await this.product.findOne(id, {
+    return await this.product.findOne(id, {
       relations: ['additionalImages', 'category'],
     });
-    return product;
   }
 
   async getProductList(category?: string): Promise<ProductEntity[]> {
