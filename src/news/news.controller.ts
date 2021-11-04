@@ -29,8 +29,8 @@ export class NewsController {
     return this.newsService.create(data);
   }
   @Delete('')
-  async delete(@Body() ids: number[]) {
-    return this.newsService.delete(ids);
+  async delete(@Body() ids: { ids: number[] }) {
+    return this.newsService.delete(ids.ids);
   }
 
   @Get(':id')

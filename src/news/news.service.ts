@@ -23,7 +23,7 @@ export class NewsService {
 
   async delete(ids: number[]): Promise<NewsEntity[]> {
     const news = await this.newsEntity.findByIds(ids);
-    return this.newsEntity.remove(news);
+    return await this.newsEntity.remove(news);
   }
 
   async update(data: Partial<NewsEntity>): Promise<NewsEntity> {
