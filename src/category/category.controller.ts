@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CategoryEntity } from '../entities/category.entity';
 
@@ -6,15 +6,20 @@ import { CategoryEntity } from '../entities/category.entity';
 export class CategoryController {
   constructor(private categoryService: CategoryService) {}
 
-  @Post()
+  @Post('')
   create(
     @Body() data: Omit<CategoryEntity, 'id' | 'products'>,
   ): Promise<Omit<CategoryEntity, 'products'>> {
     return this.categoryService.create(data);
   }
 
-  @Get()
+  @Get('')
   getList(): Promise<CategoryEntity[]> {
     return this.categoryService.getList();
+  }
+
+  @Delete('')
+  delete(@Body() ids: { ids: number[] }) {
+    return this.categoryService.delete(ids.ids);
   }
 }
