@@ -12,8 +12,10 @@ import { NewsEntity } from './entities/news.entity';
 import { NewsModule } from './news/news.module';
 import { FeedbackModule } from './feedback/feedback.module';
 import { FeedbackEntity } from './entities/feedback.entity';
-import { OrderModule } from "./order/order.module";
-import { OrderEntity } from "./entities/order.entity";
+import { OrderModule } from './order/order.module';
+import { OrderEntity } from './entities/order.entity';
+import { VacansyModule } from './vacansy/vacansy.module';
+import { VacansyEntity } from './entities/vacansy.entity';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
@@ -33,6 +35,7 @@ require('dotenv').config();
         NewsEntity,
         FeedbackEntity,
         OrderEntity,
+        VacansyEntity,
       ],
       synchronize: true,
     }),
@@ -45,6 +48,7 @@ require('dotenv').config();
     NewsModule,
     FeedbackModule,
     OrderModule,
+    VacansyModule,
   ],
   controllers: [AppController],
   providers: [],
