@@ -9,7 +9,10 @@ export class CategoryService {
     @InjectRepository(CategoryEntity)
     private category: Repository<CategoryEntity>,
   ) {}
-
+  async delete(ids: number[]): Promise<CategoryEntity[]> {
+    const list = await this.category.findByIds(ids);
+    return await this.category.remove(list);
+  }
   async create(
     data: Omit<CategoryEntity, 'id' | 'products'>,
   ): Promise<Omit<CategoryEntity, 'products'>> {
