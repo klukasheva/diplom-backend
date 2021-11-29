@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CategoryEntity } from '../entities/category.entity';
 
@@ -17,7 +17,10 @@ export class CategoryController {
   getList(): Promise<CategoryEntity[]> {
     return this.categoryService.getList();
   }
-
+  @Put('')
+  update(@Body() data: Partial<CategoryEntity>) {
+    return this.categoryService.update(data);
+  }
   @Delete('')
   delete(@Body() ids: { ids: number[] }) {
     return this.categoryService.delete(ids.ids);
