@@ -22,9 +22,9 @@ export class NavlinksController {
   create(@Body() data: NavlinksEntity) {
     return this.service.create(data);
   }
-  @Get(':number')
-  getOne(@Param() id: number) {
-    return this.service.getOne(id);
+  @Get(':id')
+  getOne(@Param('id') id: string) {
+    return this.service.getOne(+id);
   }
 
   @Put()
