@@ -23,7 +23,12 @@ export class CategoryService {
     }
     return await this.category.save(data);
   }
-
+  async update(data: Partial<CategoryEntity>): Promise<CategoryEntity> {
+    const category = await this.category.findOne({ id: data.id });
+    if (category) {
+      return await this.category.save(data);
+    }
+  }
   async getList(): Promise<CategoryEntity[]> {
     return await this.category.find({
       relations: ['products'],

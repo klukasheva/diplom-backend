@@ -16,6 +16,8 @@ import { OrderModule } from './order/order.module';
 import { OrderEntity } from './entities/order.entity';
 import { VacansyModule } from './vacansy/vacansy.module';
 import { VacansyEntity } from './entities/vacansy.entity';
+import { NavlinksEntity } from './entities/navlinks.entity';
+import { NavlinksModule } from './navlinks/navlinks.module';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
@@ -36,6 +38,7 @@ require('dotenv').config();
         FeedbackEntity,
         OrderEntity,
         VacansyEntity,
+        NavlinksEntity,
       ],
       synchronize: true,
     }),
@@ -49,8 +52,10 @@ require('dotenv').config();
     FeedbackModule,
     OrderModule,
     VacansyModule,
+    NavlinksModule,
   ],
   controllers: [AppController],
   providers: [],
 })
-export class AppModule {}
+export class AppModule {
+}

@@ -18,6 +18,13 @@ export class VacansyService {
     return await this.vacansy.save(data);
   }
 
+  async update(data: VacansyEntity) {
+    const vacansy = await this.vacansy.findOne({ id: data.id });
+    if (vacansy) {
+      return this.vacansy.save(data);
+    }
+  }
+
   async delete(ids: number[]) {
     const arr = await this.vacansy.findByIds(ids);
     return await this.vacansy.remove(arr);
