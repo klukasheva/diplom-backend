@@ -19,7 +19,7 @@ export class OrderEntity {
   address: string;
   @Column()
   cost: number;
-  @Column()
+  @Column({ length: 10000 })
   description: string;
   @ManyToMany(() => ProductEntity, (product) => product.orders)
   @JoinTable()
