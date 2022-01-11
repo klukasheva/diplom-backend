@@ -6,6 +6,8 @@ export class NavlinksEntity {
   id: number;
   @Column()
   title: string;
-  @Column()
+  @Column({
+    length: 1000,
+  })
   description: string;
 }
