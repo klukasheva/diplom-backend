@@ -18,6 +18,8 @@ export class OrderEntity {
   @Column()
   address: string;
   @Column()
+  status: boolean;
+  @Column()
   cost: number;
   @Column({ length: 10000 })
   description: string;

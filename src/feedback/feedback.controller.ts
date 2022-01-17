@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { FeedbackService } from './feedback.service';
 import { FeedbackEntity } from '../entities/feedback.entity';
 
@@ -8,6 +8,11 @@ export class FeedbackController {
   @Get('')
   async getList(): Promise<FeedbackEntity[]> {
     return this.feedbackService.getList();
+  }
+
+  @Put('/change-status')
+  async changeStatus(@Body() data: Partial<FeedbackEntity>): Promise<FeedbackEntity> {
+    return this.feedbackService.changeStatus(data);
   }
 
   @Post('')
