@@ -19,11 +19,11 @@ export class ProductEntity {
   image: string;
   @Column()
   title: string;
-  @Column()
+  @Column({ type: 'float' })
   cost: number;
   @Column({ default: 1 })
   count: number;
-  @Column()
+  @Column({ type: 'float' })
   stockCost: number;
   @Column({ length: 10000 })
   description: string;

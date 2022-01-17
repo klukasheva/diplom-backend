@@ -14,6 +14,13 @@ export class OrderService {
     return await this.order.save(data);
   }
 
+  async changeStatus(data: Partial<OrderEntity>): Promise<OrderEntity> {
+    const order = await this.order.findOne({ id: data.id });
+    if (order) {
+      return await this.order.save(data);
+    }
+  }
+
   async getList(): Promise<OrderEntity[]> {
     return this.order.find({
       relations: ['products'],

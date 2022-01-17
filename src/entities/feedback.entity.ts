@@ -7,6 +7,8 @@ export class FeedbackEntity {
   @Column()
   username: string;
   @Column()
+  status: boolean;
+  @Column()
   phoneNumber?: string;
   @Column()
   text: string;

@@ -13,7 +13,12 @@ export class FeedbackService {
   async createFeedback(data: FeedbackEntity): Promise<FeedbackEntity> {
     return await this.feedbackEntity.save(data);
   }
-
+  async changeStatus(data: Partial<FeedbackEntity>): Promise<FeedbackEntity> {
+    const feedback = await this.feedbackEntity.findOne({ id: data.id });
+    if (feedback) {
+      return await this.feedbackEntity.save(data);
+    }
+  }
   async getList(): Promise<FeedbackEntity[]> {
     return this.feedbackEntity.find();
   }
